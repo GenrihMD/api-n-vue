@@ -9,13 +9,6 @@ RUN npm run build
 # этап production (production-stage)
 FROM nginx:stable-alpine as production-stage
 
-# RUN apt-get update \
-#   && apt-get install --assume-yes --no-install-recommends\
-#     nodejs \
-#     npm \
-#   && apt-get clean \
-#   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 RUN apk add nodejs
 RUN apk add npm
 
