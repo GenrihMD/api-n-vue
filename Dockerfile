@@ -1,9 +1,9 @@
 # этап сборки (build stage)
 FROM node:lts-alpine as build-stage
 WORKDIR /app
-COPY ./front/package*.json ./
+COPY ./client/package*.json ./
 RUN npm install
-COPY ./front .
+COPY ./client .
 RUN npm run build
 
 # этап production (production-stage)
