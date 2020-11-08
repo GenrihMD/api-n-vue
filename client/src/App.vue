@@ -1,12 +1,21 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang="pug">
+#app 
+  .post(v-for="p in posts") 
+    h2 {{ p.title }}
+    p {{ p.body }}    
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { mapState } from 'vuex'
+
+export default Vue.extend({
+  computed: mapState({ posts: 'data' }),
+  created() {
+    this.$store.dispatch('fetchData')
+  },
+})
+</script>
 
 <style lang="scss">
 #app {
