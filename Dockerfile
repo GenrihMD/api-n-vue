@@ -7,20 +7,17 @@ COPY ./client .
 RUN npm run build
 
 # этап production (production-stage)
-FROM nginx as production-stage
+FROM nginx:stable-alpine as production-stage
 
-RUN apt-get update \
-  && apt-get install --assume-yes --no-install-recommends\
-    apt-transport-https \
-    bzip2 \
-    curl \
-    git \
-    rlwrap \
-    vim \
-    nodejs \
-    npm \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# RUN apt-get update \
+#   && apt-get install --assume-yes --no-install-recommends\
+#     nodejs \
+#     npm \
+#   && apt-get clean \
+#   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN apk add nodejs
+RUN apk add npm
 
 WORKDIR /app
 COPY ./server .
